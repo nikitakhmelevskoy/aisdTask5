@@ -21,6 +21,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Map;
@@ -52,6 +54,7 @@ public class TreeDemoFrame extends JFrame {
     private JButton buttonToBracketNotation;
     private JCheckBox checkBoxTransparent;
     private JSpinner spinnerSingleValue;
+    private JButton buttonFindMin;
 
     private JMenuBar menuBarMain;
     private JPanel paintPanel = null;
@@ -269,6 +272,9 @@ public class TreeDemoFrame extends JFrame {
                 }
             });
         });
+        buttonFindMin.addActionListener(e -> {
+            textAreaSystemOut.setText(Integer.toString(BinaryTreeAlgorithms.getMinValue(tree)));
+        });
     }
 
     /**
@@ -449,7 +455,7 @@ public class TreeDemoFrame extends JFrame {
         checkBoxTransparent.setText("прозрачность");
         panel7.add(checkBoxTransparent, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel8 = new JPanel();
-        panel8.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel8.setLayout(new GridLayoutManager(6, 1, new Insets(0, 0, 0, 0), -1, -1));
         splitPaneMain.setRightComponent(panel8);
         buttonPreOrderTraverse = new JButton();
         buttonPreOrderTraverse.setText("Прямой обход");
@@ -460,13 +466,16 @@ public class TreeDemoFrame extends JFrame {
         buttonPostOrderTraverse = new JButton();
         buttonPostOrderTraverse.setText("Обратный обход");
         panel8.add(buttonPostOrderTraverse, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        panel8.add(scrollPane1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        textAreaSystemOut = new JTextArea();
+        scrollPane1.setViewportView(textAreaSystemOut);
         buttonByLevelTraverse = new JButton();
         buttonByLevelTraverse.setText("Обход в ширину");
         panel8.add(buttonByLevelTraverse, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JScrollPane scrollPane1 = new JScrollPane();
-        panel8.add(scrollPane1, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        textAreaSystemOut = new JTextArea();
-        scrollPane1.setViewportView(textAreaSystemOut);
+        buttonFindMin = new JButton();
+        buttonFindMin.setText("Найти минимальное число");
+        panel8.add(buttonFindMin, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

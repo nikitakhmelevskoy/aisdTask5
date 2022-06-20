@@ -313,4 +313,16 @@ public class BinaryTreeAlgorithms {
 
         return sb.toString();
     }
+
+    public static <T> Integer getMinValue(BinaryTree<Integer> tree) {
+        Integer minValue = Integer.MAX_VALUE;
+
+        for (Integer i : BinaryTreeAlgorithms.preOrderValues(tree.getRoot())) {
+            if (i < minValue) {
+                minValue = i;
+            }
+        }
+
+        return minValue;
+    }
 }
